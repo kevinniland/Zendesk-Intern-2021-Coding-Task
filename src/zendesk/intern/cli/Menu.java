@@ -8,6 +8,13 @@ import org.json.JSONException;
 import zendesk.intern.api.ApiRequester;
 import zendesk.intern.data.Ticket;
 
+/**
+ * @author Kevin Niland
+ * @category CLI
+ * @version 1.0
+ * 
+ *          Menu.java - Provides a basic CLI
+ */
 public class Menu {
 	public void menu() throws JSONException {
 		ApiRequester apiRequester = new ApiRequester();
@@ -64,9 +71,10 @@ public class Menu {
 			}
 		}
 	}
-	
+
 	public void displayTicketHeader() {
-		System.out.format("\n%-4s| %-50s | %-4s | %-12s | %-10s | %-10s | %-30s", "ID", "SUBJECT", "STATUS", "GROUP ID", "PRIORITY", "TYPE", "TAGS");
+		System.out.format("\n%-4s| %-50s | %-4s | %-12s | %-10s | %-10s | %-30s", "ID", "SUBJECT", "STATUS", "GROUP ID",
+				"PRIORITY", "TYPE", "TAGS");
 		System.out.println(
 				"\n-------------------------------------------------------------------------------------------------------------------------------------");
 	}
@@ -79,6 +87,7 @@ public class Menu {
 		String priority = ticket.getPriority();
 		String type = ticket.getType();
 		ArrayList<String> tags = ticket.getTags();
-		System.out.format("%-4d| %-50s |  %-5s | %d | %-10s | %-10s | %-50s\n", id, subject, status, groupId, priority, type, tags);
+		System.out.format("%-4d| %-50s |  %-5s | %d | %-10s | %-10s | %-50s\n", id, subject, status, groupId, priority,
+				type, tags);
 	}
 }

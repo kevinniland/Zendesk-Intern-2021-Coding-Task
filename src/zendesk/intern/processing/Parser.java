@@ -15,6 +15,13 @@ import zendesk.intern.data.Source;
 import zendesk.intern.data.Ticket;
 import zendesk.intern.data.Via;
 
+/**
+ * @author Kevin Niland
+ * @category Processing
+ * @version 1.0
+ * 
+ * Parser.java - Parses data from the Zendesk API
+ */
 public class Parser {
 	private Ticket ticket, ticketObj;
 	private HashMap<Long, Ticket> ticketsHashMap = new HashMap<>();
