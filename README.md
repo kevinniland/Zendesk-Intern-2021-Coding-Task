@@ -60,22 +60,22 @@ The coding challenge set to us had the following requirements:
 
 This section will give a brief description of how I accomplished each of the above tasks.
 
-### * Connect to the Zendesk API
+### Connect to the Zendesk API
 To connect to the Zendesk API, I used the [java.net](https://docs.oracle.com/javase/7/docs/api/java/net/package-summary.html) library, specifically the HttpURLConnection and URL classes. I first specified the URL I needed to connect to. Since I wanted to make this application usable by anyone, I allowed the user to specifiy their subdomain and passed that in, as that is the only part of the URL that differs for viewing tickets associated with an account. Next, using the email and password the user entered, I encoded them using Base64, which would then allow the user to connect to the API. I next needed to check the HTTP status code returned. I created an enum class that has a range of possible HTTP status codes. Using this, I then created a util class for defining the ranges of a successful response, client-side error response, server-side error response, or an unknown response. I could then perform a switch on the response code, which would then notify the user if they have successfully logged in and connected to the API, or if there was an error. 
 ![login](https://github.com/kevinniland/Zendesk-Intern-2021-Coding-Task/blob/main/images/login_code.PNG)
 
-### * Request all the tickets for your account
+### Request all the tickets for your account
 Following on from the previous section, if the user has successfully connected to the API, the InputStream is passed to the ParserImpl class. Here, the InputStream is parsed and tickets are saved. Each ticket is then converted to a ticket object.
 ![parse](https://github.com/kevinniland/Zendesk-Intern-2021-Coding-Task/blob/main/images/parse_code.PNG)
 ![save_tickets](https://github.com/kevinniland/Zendesk-Intern-2021-Coding-Task/blob/main/images/saveTickets_code.PNG)
 ![convert_to_obj](https://github.com/kevinniland/Zendesk-Intern-2021-Coding-Task/blob/main/images/convertObj_code.PNG)
 
-### * Display them in a list/Page through tickets when more than 25 are returned
+### Display them in a list/Page through tickets when more than 25 are returned
 To display all tickets in a list, I first check if the ticketsList (containing all tickets retrieved from the user's account) is less than 25. This means there is no need to execute the pagination code. Else, while a `counter` is less than the size of the tickets list and `input` (set by the user) is 1, display the current page of tickets. `counter` is used to keep track of the number of tickets displayed. If the size of the tickets list minus the counter is 0, this means there is no more tickets to display/user is on the last page of tickets.
 ![display_ticket](https://github.com/kevinniland/Zendesk-Intern-2021-Coding-Task/blob/main/images/display.PNG)
 ![display_all](https://github.com/kevinniland/Zendesk-Intern-2021-Coding-Task/blob/main/images/displayAll_code.PNG)
 
-### * Display individual ticket details
+### Display individual ticket details
 To display a single ticket, I simply pass in the tickets map and the ticket ID entered by the user. If the tickets map contains the ticket ID, display this ticket.
 
 ![display_one](https://github.com/kevinniland/Zendesk-Intern-2021-Coding-Task/blob/main/images/displaySingle_code.PNG)
