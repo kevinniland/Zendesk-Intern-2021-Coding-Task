@@ -1,9 +1,14 @@
 # Zendesk Intern 2021 Coding Task 
-__Author:__ Kevin Niland
+__Developer:__ Kevin Niland
 
 ---
 
-## Overview of coding task
+## Overview
+_Zendesk Ticket Viewer. Zendesk 2021 intern coding challenge that uses the Zendesk API to allow users to view tickets associated with their Zendesk account_
+
+---
+
+## Project Statement
 _Zendesk is a customer service tool that allows the creation and management of support tickets. Your company needs you to build a Ticket Viewer that will:_
 *	_Connect to the Zendesk API_
 * _Request all the tickets for your account_
@@ -12,6 +17,14 @@ _Zendesk is a customer service tool that allows the creation and management of s
 * _Page through tickets when more than 25 are returned_
 
 ---
+
+## Introduction
+This section provides an introduction to the repository and code.
+ 
+### Repository
+This repository contains the following directories and files:
+* [src]() - Contains the source code for the application
+* [images]() - Contains images used to help aid in the explanation of certain parts of the application and the accompanying code.
 
 ## Requirements
 * Minimum of Java 1.8
