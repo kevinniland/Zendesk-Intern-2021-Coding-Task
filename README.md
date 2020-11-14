@@ -16,7 +16,7 @@ _Zendesk is a customer service tool that allows the creation and management of s
 ## Requirements
 * Minimum of Java 1.8
 * JUnit 5
-* java-json.jar - Download ![here](http://www.java2s.com/Code/Jar/j/Downloadjavajsonjar.htm)
+* java-json.jar - Download [here](http://www.java2s.com/Code/Jar/j/Downloadjavajsonjar.htm)
 
 ---
 
