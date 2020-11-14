@@ -11,6 +11,19 @@ _Zendesk is a customer service tool that allows the creation and management of s
 *	_Display individual ticket details_
 * _Page through tickets when more than 25 are returned_
 
+---
+
+## Requirements
+* Minimum of Java 1.8
+* JUnit 5
+* java-json.jar - Download ![here](http://www.java2s.com/Code/Jar/j/Downloadjavajsonjar.htm)
+
+---
+
 ## Installation
 
+---
+
 ## How to use
+
+---
