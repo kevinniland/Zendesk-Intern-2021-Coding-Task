@@ -21,9 +21,15 @@ _Zendesk is a customer service tool that allows the creation and management of s
 ---
 
 ## Installation
+1. Clone the GitHub repository or download the ZIP file
+2. Once downloaded:
+3. 
 
 ---
 
 ## How to use
+1. When the application is first run, the user will be prompted for their subdomain, email, and password for their Zendesk account.
+2. On a successful login, the user will be greeted with the following options: 
+
 
 ---
