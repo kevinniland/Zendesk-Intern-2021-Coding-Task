@@ -23,7 +23,7 @@ _Zendesk is a customer service tool that allows the creation and management of s
 ## Installation
 1. Download or clone the repository using `git clone https://github.com/kevinniland/Zendesk-Intern-2021-Coding-Task`
 2. Once downloaded/cloned, either open the project folder in your preferred IDE or run the JAR (included) using: `java -jar zendesk.jar`
-  1. If running the project within an IDE, please ensure you included the java-json.jar in your build path.
+   1. If running the project within an IDE, please ensure you included the java-json.jar in your build path.
 
 ---
 
