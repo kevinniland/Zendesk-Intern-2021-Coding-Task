@@ -77,4 +77,5 @@ To display all tickets in a list, I first check if the ticketsList (containing a
 
 ### Display individual ticket details
 To display a single ticket, I simply pass in the tickets map and the ticket ID entered by the user. If the tickets map contains the ticket ID, display this ticket.
+
 ![display_one](https://github.com/kevinniland/Zendesk-Intern-2021-Coding-Task/blob/main/images/displaySingle_code.PNG)
