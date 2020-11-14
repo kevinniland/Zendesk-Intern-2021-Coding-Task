@@ -2,6 +2,8 @@ package zendesk.intern.data;
 
 import java.util.ArrayList;
 
+import zendesk.intern.interfaces.Ticket;
+
 /**
  * @author Kevin Niland
  * @category Data
@@ -9,9 +11,11 @@ import java.util.ArrayList;
  * 
  *           Ticket.java - Getter and setter class for attributes associated
  *           with a ticket such as tags, created_at, id, assignee_id, etc.
+ *           
+ *           https://developer.zendesk.com/rest_api/docs/support/tickets
  */
-public class Ticket {
-	private Via via;
+public class TicketImpl implements Ticket {
+	private ViaImpl via;
 	private ArrayList<String> tags, fields, custom_fields;
 	private ArrayList<Integer> collaborator_id, follower_ids;
 	private ArrayList<Integer> sharing_agreement_ids, followup_ids;
@@ -27,6 +31,7 @@ public class Ticket {
 	 * 
 	 * @return url
 	 */
+	@Override
 	public String getUrl() {
 		return url;
 	}
@@ -36,6 +41,7 @@ public class Ticket {
 	 * 
 	 * @param url
 	 */
+	@Override
 	public void setUrl(String url) {
 		this.url = url;
 	}
@@ -45,6 +51,7 @@ public class Ticket {
 	 * 
 	 * @return id
 	 */
+	@Override
 	public long getId() {
 		return id;
 	}
@@ -54,6 +61,7 @@ public class Ticket {
 	 * 
 	 * @param id
 	 */
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
@@ -62,6 +70,7 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
+	@Override
 	public String getExternal_id() {
 		return external_id;
 	}
@@ -70,6 +79,7 @@ public class Ticket {
 	 * 
 	 * @param external_id
 	 */
+	@Override
 	public void setExternal_id(String external_id) {
 		this.external_id = external_id;
 	}
@@ -78,7 +88,8 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
-	public Via getVia() {
+	@Override
+	public ViaImpl getVia() {
 		return via;
 	}
 
@@ -86,7 +97,8 @@ public class Ticket {
 	 * 
 	 * @param via
 	 */
-	public void setVia(Via via) {
+	@Override
+	public void setVia(ViaImpl via) {
 		this.via = via;
 	}
 
@@ -95,6 +107,7 @@ public class Ticket {
 	 * 
 	 * @return created_at
 	 */
+	@Override
 	public String getCreated_at() {
 		return created_at;
 	}
@@ -104,6 +117,7 @@ public class Ticket {
 	 * 
 	 * @param created_at
 	 */
+	@Override
 	public void setCreated_at(String created_at) {
 		this.created_at = created_at;
 	}
@@ -113,6 +127,7 @@ public class Ticket {
 	 * 
 	 * @return updated_at
 	 */
+	@Override
 	public String getUpdated_at() {
 		return updated_at;
 	}
@@ -122,6 +137,7 @@ public class Ticket {
 	 * 
 	 * @param updated_at
 	 */
+	@Override
 	public void setUpdated_at(String updated_at) {
 		this.updated_at = updated_at;
 	}
@@ -131,6 +147,7 @@ public class Ticket {
 	 * 
 	 * @return type
 	 */
+	@Override
 	public String getType() {
 		return type;
 	}
@@ -140,6 +157,7 @@ public class Ticket {
 	 * 
 	 * @param type
 	 */
+	@Override
 	public void setType(String type) {
 		this.type = type;
 	}
@@ -149,6 +167,7 @@ public class Ticket {
 	 * 
 	 * @return subject
 	 */
+	@Override
 	public String getSubject() {
 		return subject;
 	}
@@ -158,6 +177,7 @@ public class Ticket {
 	 * 
 	 * @param subject
 	 */
+	@Override
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
@@ -166,6 +186,7 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
+	@Override
 	public String getRaw_subject() {
 		return raw_subject;
 	}
@@ -174,6 +195,7 @@ public class Ticket {
 	 * 
 	 * @param raw_subject
 	 */
+	@Override
 	public void setRaw_subject(String raw_subject) {
 		this.raw_subject = raw_subject;
 	}
@@ -183,6 +205,7 @@ public class Ticket {
 	 * 
 	 * @return description
 	 */
+	@Override
 	public String getDescription() {
 		return description;
 	}
@@ -192,6 +215,7 @@ public class Ticket {
 	 * 
 	 * @param description
 	 */
+	@Override
 	public void setDescription(String description) {
 		this.description = description;
 	}
@@ -201,6 +225,7 @@ public class Ticket {
 	 * 
 	 * @return priority
 	 */
+	@Override
 	public String getPriority() {
 		return priority;
 	}
@@ -210,6 +235,7 @@ public class Ticket {
 	 * 
 	 * @param priority
 	 */
+	@Override
 	public void setPriority(String priority) {
 		this.priority = priority;
 	}
@@ -219,6 +245,7 @@ public class Ticket {
 	 * 
 	 * @return status
 	 */
+	@Override
 	public String getStatus() {
 		return status;
 	}
@@ -228,6 +255,7 @@ public class Ticket {
 	 * 
 	 * @param status
 	 */
+	@Override
 	public void setStatus(String status) {
 		this.status = status;
 	}
@@ -236,6 +264,7 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
+	@Override
 	public String getRecipient() {
 		return recipient;
 	}
@@ -244,6 +273,7 @@ public class Ticket {
 	 * 
 	 * @param recipient
 	 */
+	@Override
 	public void setRecipient(String recipient) {
 		this.recipient = recipient;
 	}
@@ -252,6 +282,7 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
+	@Override
 	public long getRequester_id() {
 		return requester_id;
 	}
@@ -260,6 +291,7 @@ public class Ticket {
 	 * 
 	 * @param requester_id
 	 */
+	@Override
 	public void setRequester_id(long requester_id) {
 		this.requester_id = requester_id;
 	}
@@ -268,6 +300,7 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
+	@Override
 	public long getSubmitter_id() {
 		return submitter_id;
 	}
@@ -276,6 +309,7 @@ public class Ticket {
 	 * 
 	 * @param submitter_id
 	 */
+	@Override
 	public void setSubmitter_id(long submitter_id) {
 		this.submitter_id = submitter_id;
 	}
@@ -284,6 +318,7 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
+	@Override
 	public long getAssignee_id() {
 		return assignee_id;
 	}
@@ -292,6 +327,7 @@ public class Ticket {
 	 * 
 	 * @param assignee_id
 	 */
+	@Override
 	public void setAssignee_id(long assignee_id) {
 		this.assignee_id = assignee_id;
 	}
@@ -300,6 +336,7 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
+	@Override
 	public long getOrganization_id() {
 		return organization_id;
 	}
@@ -308,6 +345,7 @@ public class Ticket {
 	 * 
 	 * @param organization_id
 	 */
+	@Override
 	public void setOrganization_id(long organization_id) {
 		this.organization_id = organization_id;
 	}
@@ -316,6 +354,7 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
+	@Override
 	public long getGroup_id() {
 		return group_id;
 	}
@@ -324,6 +363,7 @@ public class Ticket {
 	 * 
 	 * @param group_id
 	 */
+	@Override
 	public void setGroup_id(long group_id) {
 		this.group_id = group_id;
 	}
@@ -332,6 +372,7 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
+	@Override
 	public ArrayList<Integer> getCollaborator_id() {
 		return collaborator_id;
 	}
@@ -340,6 +381,7 @@ public class Ticket {
 	 * 
 	 * @param collaborator_id
 	 */
+	@Override
 	public void setCollaborator_id(ArrayList<Integer> collaborator_id) {
 		this.collaborator_id = collaborator_id;
 	}
@@ -348,6 +390,7 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
+	@Override
 	public ArrayList<Integer> getFollower_ids() {
 		return follower_ids;
 	}
@@ -356,6 +399,7 @@ public class Ticket {
 	 * 
 	 * @param follower_ids
 	 */
+	@Override
 	public void setFollower_ids(ArrayList<Integer> follower_ids) {
 		this.follower_ids = follower_ids;
 	}
@@ -364,6 +408,7 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
+	@Override
 	public long getForum_topic_id() {
 		return forum_topic_id;
 	}
@@ -372,6 +417,7 @@ public class Ticket {
 	 * 
 	 * @param forum_topic_id
 	 */
+	@Override
 	public void setForum_topic_id(long forum_topic_id) {
 		this.forum_topic_id = forum_topic_id;
 	}
@@ -380,6 +426,7 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
+	@Override
 	public long getProblem_id() {
 		return problem_id;
 	}
@@ -388,6 +435,7 @@ public class Ticket {
 	 * 
 	 * @param problem_id
 	 */
+	@Override
 	public void setProblem_id(long problem_id) {
 		this.problem_id = problem_id;
 	}
@@ -396,6 +444,7 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
+	@Override
 	public boolean isHas_incidents() {
 		return has_incidents;
 	}
@@ -404,6 +453,7 @@ public class Ticket {
 	 * 
 	 * @param has_incidents
 	 */
+	@Override
 	public void setHas_incidents(boolean has_incidents) {
 		this.has_incidents = has_incidents;
 	}
@@ -412,6 +462,7 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
+	@Override
 	public boolean isIs_public() {
 		return is_public;
 	}
@@ -420,6 +471,7 @@ public class Ticket {
 	 * 
 	 * @param is_public
 	 */
+	@Override
 	public void setIs_public(boolean is_public) {
 		this.is_public = is_public;
 	}
@@ -428,6 +480,7 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
+	@Override
 	public String getDue_at() {
 		return due_at;
 	}
@@ -436,6 +489,7 @@ public class Ticket {
 	 *
 	 * @param due_at
 	 */
+	@Override
 	public void setDue_at(String due_at) {
 		this.due_at = due_at;
 	}
@@ -444,6 +498,7 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
+	@Override
 	public ArrayList<String> getTags() {
 		return tags;
 	}
@@ -452,6 +507,7 @@ public class Ticket {
 	 * 
 	 * @param tags
 	 */
+	@Override
 	public void setTags(ArrayList<String> tags) {
 		this.tags = tags;
 	}
@@ -460,6 +516,7 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
+	@Override
 	public ArrayList<String> getCustom_fields() {
 		return custom_fields;
 	}
@@ -468,6 +525,7 @@ public class Ticket {
 	 *
 	 * @param custom_fields
 	 */
+	@Override
 	public void setCustom_fields(ArrayList<String> custom_fields) {
 		this.custom_fields = custom_fields;
 	}
@@ -476,6 +534,7 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
+	@Override
 	public String getSatisfaction_rating() {
 		return satisfaction_rating;
 	}
@@ -484,6 +543,7 @@ public class Ticket {
 	 * 
 	 * @param satisfaction_rating
 	 */
+	@Override
 	public void setSatisfaction_rating(String satisfaction_rating) {
 		this.satisfaction_rating = satisfaction_rating;
 	}
@@ -492,6 +552,7 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
+	@Override
 	public ArrayList<Integer> getSharing_agreement_ids() {
 		return sharing_agreement_ids;
 	}
@@ -500,6 +561,7 @@ public class Ticket {
 	 * 
 	 * @param sharing_agreement_ids
 	 */
+	@Override
 	public void setSharing_agreement_ids(ArrayList<Integer> sharing_agreement_ids) {
 		this.sharing_agreement_ids = sharing_agreement_ids;
 	}
@@ -508,6 +570,7 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
+	@Override
 	public ArrayList<String> getFields() {
 		return fields;
 	}
@@ -516,6 +579,7 @@ public class Ticket {
 	 * 
 	 * @param arrayList
 	 */
+	@Override
 	public void setFields(ArrayList<String> arrayList) {
 		this.fields = arrayList;
 	}
@@ -524,6 +588,7 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
+	@Override
 	public ArrayList<Integer> getFollowup_ids() {
 		return followup_ids;
 	}
@@ -532,6 +597,7 @@ public class Ticket {
 	 * 
 	 * @param followup_ids
 	 */
+	@Override
 	public void setFollowup_ids(ArrayList<Integer> followup_ids) {
 		this.followup_ids = followup_ids;
 	}
@@ -540,6 +606,7 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
+	@Override
 	public long getBrand_id() {
 		return brand_id;
 	}
@@ -548,6 +615,7 @@ public class Ticket {
 	 * 
 	 * @param brand_id
 	 */
+	@Override
 	public void setBrand_id(long brand_id) {
 		this.brand_id = brand_id;
 	}
@@ -556,6 +624,7 @@ public class Ticket {
 	 * 
 	 * @return
 	 */
+	@Override
 	public boolean isAllow_channelback() {
 		return allow_channelback;
 	}
@@ -564,6 +633,7 @@ public class Ticket {
 	 * 
 	 * @param allow_channelback
 	 */
+	@Override
 	public void setAllow_channelback(boolean allow_channelback) {
 		this.allow_channelback = allow_channelback;
 	}

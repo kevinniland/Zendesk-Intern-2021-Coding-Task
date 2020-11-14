@@ -1,4 +1,4 @@
-package zendesk.intern.processing;
+package zendesk.intern.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,20 +11,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import zendesk.intern.data.Source;
-import zendesk.intern.data.Ticket;
-import zendesk.intern.data.Via;
+import zendesk.intern.data.SourceImpl;
+import zendesk.intern.data.TicketImpl;
+import zendesk.intern.data.ViaImpl;
+import zendesk.intern.interfaces.Parser;
 
 /**
  * @author Kevin Niland
- * @category Processing
+ * @category Utilities
  * @version 1.0
  * 
  * Parser.java - Parses data from the Zendesk API
  */
-public class Parser {
-	private Ticket ticket, ticketObj;
-	private HashMap<Long, Ticket> ticketsHashMap = new HashMap<>();
+public class ParserImpl implements Parser {
+	private TicketImpl ticket, ticketObj;
+	private HashMap<Long, TicketImpl> ticketsHashMap = new HashMap<>();
 	private JSONArray arrayOfTickets;
 	private JSONObject mainObject, ticketJson;
 	private BufferedReader bufferedReader;
@@ -37,6 +38,7 @@ public class Parser {
 	 * Takes the argument as InputStream from the GET API call to parse the String
 	 * into Ticket Object
 	 */
+	@Override
 	public void parse(InputStream inputStream) throws JSONException {
 		bufferedReader = new BufferedReader(new InputStreamReader((inputStream)));
 
@@ -55,6 +57,7 @@ public class Parser {
 	/**
 	 * Saving the Array of Ticket JSON Objects as HashMap of Tickets object
 	 */
+	@Override
 	public void saveTicketsJsonString() throws JSONException {
 		mainObject = new JSONObject(stringBuilder.toString());
 		arrayOfTickets = mainObject.getJSONArray("tickets");
@@ -71,18 +74,19 @@ public class Parser {
 	/**
 	 * Populates the Ticket Object with JSON data
 	 */
-	private Ticket convertToTicketObject(JSONObject ticketJson) throws JSONException {
-		ticketObj = new Ticket();
+	@Override
+	public TicketImpl convertToTicketObject(JSONObject ticketJson) throws JSONException {
+		ticketObj = new TicketImpl();
 
 		ticketObj.setUrl(ticketJson.optString("url"));
 		ticketObj.setId(ticketJson.optLong("id"));
 		ticketObj.setExternal_id(ticketJson.optString("external_id"));
 
-		Via via = new Via();
+		ViaImpl via = new ViaImpl();
 		JSONObject viaJsonObject = ticketJson.getJSONObject("via");
 		via.setChannel(viaJsonObject.optString("channel"));
 
-		Source source = new Source();
+		SourceImpl source = new SourceImpl();
 		JSONObject sourceObject = viaJsonObject.getJSONObject("source");
 		source.setRel(sourceObject.optString("rel"));
 		via.setSource(source);
@@ -124,7 +128,8 @@ public class Parser {
 	/**
 	 * Method to parse JSON object as ArrayList of integers
 	 */
-	private ArrayList<Integer> getArrayListInt(JSONObject ticketJson, String key) throws JSONException {
+	@Override
+	public ArrayList<Integer> getArrayListInt(JSONObject ticketJson, String key) throws JSONException {
 		JSONArray arrayValues = ticketJson.getJSONArray(key);
 		ArrayList<Integer> list = new ArrayList<>();
 
@@ -138,7 +143,8 @@ public class Parser {
 	/**
 	 * Method to parse JSON object as ArrayList of Strings
 	 */
-	private ArrayList<String> getArrayListString(JSONObject ticketJson, String key) throws JSONException {
+	@Override
+	public ArrayList<String> getArrayListString(JSONObject ticketJson, String key) throws JSONException {
 		JSONArray arrayValues = ticketJson.getJSONArray(key);
 		ArrayList<String> list = new ArrayList<>();
 
@@ -152,7 +158,8 @@ public class Parser {
 	/**
 	 * @return the ticketsHashMap
 	 */
-	public HashMap<Long, Ticket> getTicketsHashMap() {
+	@Override
+	public HashMap<Long, TicketImpl> getTicketsHashMap() {
 		return ticketsHashMap;
 	}
 
@@ -160,7 +167,8 @@ public class Parser {
 	 * @param ticketsHashMap
 	 *            the ticketsHashMap to set
 	 */
-	public void setTicketsHashMap(HashMap<Long, Ticket> ticketsHashMap) {
+	@Override
+	public void setTicketsHashMap(HashMap<Long, TicketImpl> ticketsHashMap) {
 		this.ticketsHashMap = ticketsHashMap;
 	}
 }

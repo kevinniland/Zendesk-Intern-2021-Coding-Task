@@ -1,32 +1,38 @@
 package zendesk.intern.data;
 
+import zendesk.intern.interfaces.Via;
+
 /**
  * @author Kevin Niland
  * @category @version 1.0
  * 
  *           Via.java -
  */
-public class Via {
+public class ViaImpl implements Via {
 	private String channel;
-	private Source source;
+	private SourceImpl source;
 
-	public Via() {
+	public ViaImpl() {
 		
 	}
 
+	@Override
 	public String getChannel() {
 		return channel;
 	}
 
+	@Override
 	public void setChannel(String channel) {
 		this.channel = channel;
 	}
 
-	public Source getSource() {
+	@Override
+	public SourceImpl getSource() {
 		return source;
 	}
 
-	public void setSource(Source source) {
+	@Override
+	public void setSource(SourceImpl source) {
 		this.source = source;
 	}
 }

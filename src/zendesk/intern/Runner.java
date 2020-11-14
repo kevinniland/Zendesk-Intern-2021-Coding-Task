@@ -1,5 +1,7 @@
 package zendesk.intern;
 
+import java.io.IOException;
+
 import org.json.JSONException;
 
 import zendesk.intern.cli.Menu;
@@ -12,7 +14,7 @@ import zendesk.intern.cli.Menu;
  *          Runner.java - Entry point into the application
  */
 public class Runner {
-	public static void main(String[] args) throws JSONException {
+	public static void main(String[] args) throws JSONException, IOException {
 		new Menu().menu();
 	}
 }
