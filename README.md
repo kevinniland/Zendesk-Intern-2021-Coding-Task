@@ -4,7 +4,7 @@ __Developer:__ Kevin Niland
 ---
 
 ## Overview
-_Zendesk Ticket Viewer. Zendesk 2021 intern coding challenge that uses the Zendesk API to allow users to view tickets associated with their Zendesk account_
+_Zendesk Ticket Viewer. Zendesk 2021 intern coding challenge that uses the Zendesk API to allow users to view tickets associated with their Zendesk account._
 
 ---
 
@@ -23,12 +23,13 @@ This section provides an introduction to the repository, code, and the system re
  
 ### Repository
 This repository contains the following directories and files:
-* [src/zendesk/intern](https://github.com/kevinniland/Zendesk-Intern-2021-Coding-Task/tree/main/src/zendesk/intern) - Contains the source code for the application
+* [src/zendesk/intern](https://github.com/kevinniland/Zendesk-Intern-2021-Coding-Task/tree/main/src/zendesk/intern) - Contains the source code for the application.
 * [images](https://github.com/kevinniland/Zendesk-Intern-2021-Coding-Task/tree/main/images) - Contains images used to help aid in the explanation of certain parts of the application and the accompanying code.
+<br>
+A short screencast of the application being demoed is available [here]().
+<br>
 
-A short screencast of the application being demoed is available [here]()
-
-## Requirements
+### Requirements
 * Java 1.8+
 * JUnit 5
 * java-json.jar - Download [here](http://www.java2s.com/Code/Jar/j/Downloadjavajsonjar.htm)
@@ -39,8 +40,8 @@ A short screencast of the application being demoed is available [here]()
 This section details how to download, compile, and run the code contained in this repository.
 
 ### How to run
-* Download the project or clone the repository using `git clone https://github.com/kevinniland/Zendesk-Intern-2021-Coding-Task`
-* Once downloaded/cloned, either open the project folder in your preferred IDE or run the JAR (included) using: `java -jar zendesk.jar`
+* Download the project or clone the repository using `git clone https://github.com/kevinniland/Zendesk-Intern-2021-Coding-Task`.
+* Once downloaded/cloned, either open the project folder in your preferred IDE or run the JAR (included) using: `java -jar zendesk.jar`.
    * If running the project within an IDE, please ensure you include the __java-json.jar__ in your build path.
 * The user will first be prompted for their subdomain, email, and password.
 * Once successfully logged in, the user will be presented with a menu. They have the option of viewing all tickets and viewing a ticket by specifying its ID.
