@@ -1,6 +1,8 @@
 package zendesk.intern.api;
 
+import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Base64;
 
@@ -40,7 +42,7 @@ public class ZendeskAPI {
 	 * Double-checked locking principle. In this approach, the synchronized block is
 	 * used inside the if condition with an additional check to ensure that only one
 	 * instance of a singleton class is created
-	 * 
+	 *
 	 * @return zendeskAPI
 	 */
 	public static ZendeskAPI getInstance() {
@@ -53,68 +55,6 @@ public class ZendeskAPI {
 		}
 
 		return zendeskAPI;
-	}
-
-	/**
-	 * Login to a Zendesk account
-	 * 
-	 * @return
-	 * @throws JSONException
-	 */
-	public boolean login() throws JSONException {
-		try {
-			url = new URL("https://" + subdomain + ".zendesk.com/api/v2/tickets.json");
-
-			httpURLConnection = (HttpURLConnection) url.openConnection();
-			httpURLConnection.setRequestMethod("GET");
-			httpURLConnection.setRequestProperty("Accept", "application/json");
-
-			credentials = "" + username + ":" + password + "";
-			encodedCredentials = new String(Base64.getEncoder().encodeToString(credentials.getBytes()));
-			httpURLConnection.setRequestProperty("Authorization", "Basic " + encodedCredentials);
-
-			/**
-			 * Snippet of code that handles a range of HTTP status codes. Using an Enum
-			 * HttpStatusCodeRange, I defined a range of possible codes: SUCCESS_RANGE,
-			 * CLIENT_ERROR_RANGE,SERVER_ERROR_RANGE, and UNKNOWN. In the utility class
-			 * HttpStatusCodeRangeUtil, I have a function called getRange that calculates
-			 * the Enum for a particular code. Finally, the switch statement handles each of
-			 * the HTTP response codes
-			 */
-			httpStatusCodeRange = HttpStatusCodeRangeUtil.getRange(httpURLConnection.getResponseCode());
-
-			switch (httpStatusCodeRange) {
-			case SUCCESS_RANGE:
-				System.out.println(
-						"SUCCESS: Successfully logged in. HTTP Error Code: " + httpURLConnection.getResponseCode());
-
-				/**
-				 * If user authorisation is successful, pass the received InputStream to the
-				 * Parser class
-				 */
-				parser.parse(httpURLConnection.getInputStream());
-				break;
-			case CLIENT_ERROR_RANGE:
-				// Inform user there is an error on their side
-				System.out.println("ERROR: Unable to login. HTTP error code: " + httpURLConnection.getResponseCode());
-
-				return false;
-			case SERVER_ERROR_RANGE:
-				// Inform user there is a server-side error, possibly attributed to the Zendesk API being unavailable
-				System.out.println("ERROR: API unavailable. HTTP error code: " + httpURLConnection.getResponseCode());
-
-				return false;
-			case UNKNOWN:
-				System.out.println(
-						"ERROR: Unknow error occurred. HTTP error code: " + httpURLConnection.getResponseCode());
-			default:
-				break;
-			}
-		} catch (Exception exception) {
-			exception.printStackTrace();
-		}
-
-		return true;
 	}
 
 	/**
@@ -179,5 +119,150 @@ public class ZendeskAPI {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	/**
+	 * Login to a Zendesk account
+	 * 
+	 * @return
+	 * @throws JSONException
+	 */
+	// public boolean login() throws JSONException {
+	// try {
+	// url = new URL("https://" + subdomain + ".zendesk.com/api/v2/tickets.json");
+	//
+	// httpURLConnection = (HttpURLConnection) url.openConnection();
+	// httpURLConnection.setRequestMethod("GET");
+	// httpURLConnection.setRequestProperty("Content-Type", "application/json");
+	// httpURLConnection.setRequestProperty("Accept", "application/json");
+	//
+	// credentials = "" + username + ":" + password + "";
+	// encodedCredentials = new
+	// String(Base64.getEncoder().encodeToString(credentials.getBytes()));
+	// httpURLConnection.setRequestProperty("Authorization", "Basic " +
+	// encodedCredentials);
+	//
+	// if (httpURLConnection.getResponseCode() != 200) {
+	// System.out.println(
+	// "Unable to connect to the subdomain HTTP Error Code : " +
+	// httpURLConnection.getResponseCode());
+	// return false;
+	// } else {
+	// // Sending the received InputStream to TicketParser to parse and populate the
+	// // Ticket class.
+	// parser.ticketDataParser(httpURLConnection.getInputStream());
+	// }
+	//
+	// /**
+	// * Snippet of code that handles a range of HTTP status codes. Using an Enum
+	// * HttpStatusCodeRange, I defined a range of possible codes: SUCCESS_RANGE,
+	// * CLIENT_ERROR_RANGE,SERVER_ERROR_RANGE, and UNKNOWN. In the utility class
+	// * HttpStatusCodeRangeUtil, I have a function called getRange that calculates
+	// * the Enum for a particular code. Finally, the switch statement handles each
+	// of
+	// * the HTTP response codes
+	// */
+	// httpStatusCodeRange =
+	// HttpStatusCodeRangeUtil.getRange(httpURLConnection.getResponseCode());
+	//
+	// switch (httpStatusCodeRange) {
+	// case SUCCESS_RANGE:
+	// System.out.println(
+	// "SUCCESS: Successfully logged in. HTTP status code: " +
+	// httpURLConnection.getResponseCode());
+	//
+	// /**
+	// * If user authorisation is successful, pass the received InputStream to the
+	// * Parser class
+	// */
+	// parser.ticketDataParser(httpURLConnection.getInputStream());
+	// break;
+	// case CLIENT_ERROR_RANGE:
+	// // Inform user there is an error on their side
+	// System.out.println("ERROR: Unable to login. HTTP status code: " +
+	// httpURLConnection.getResponseCode());
+	//
+	// return false;
+	// case SERVER_ERROR_RANGE:
+	// // Inform user there is a server-side error, possibly attributed to the
+	// // Zendesk API being unavailable
+	// System.out.println("ERROR: API unavailable. HTTP status code: " +
+	// httpURLConnection.getResponseCode());
+	//
+	// return false;
+	// case UNKNOWN:
+	// System.out.println(
+	// "ERROR: Unknow error occurred. HTTP status code: " +
+	// httpURLConnection.getResponseCode());
+	// default:
+	// break;
+	// }
+	// } catch (Exception exception) {
+	// exception.printStackTrace();
+	// }
+	//
+	// return true;
+	// }
+
+	public boolean login() throws JSONException {
+		try {
+			url = new URL("https://" + subdomain + ".zendesk.com/api/v2/tickets.json");
+
+			httpURLConnection = (HttpURLConnection) url.openConnection();
+			httpURLConnection.setRequestMethod("GET");
+			httpURLConnection.setRequestProperty("Accept", "application/json");
+
+			credentials = "" + username + ":" + password + "";
+			encodedCredentials = new String(Base64.getEncoder().encodeToString(credentials.getBytes()));
+			httpURLConnection.setRequestProperty("Authorization", "Basic " + encodedCredentials);
+
+			// if (httpURLConnection.getResponseCode() != 200) {
+			// System.out.println(
+			// "Unable to connect to the subdomain HTTP Error Code : " +
+			// httpURLConnection.getResponseCode());
+			// return false;
+			// } else {
+			//
+			// // Sending the received InputStream to TicketParser to parse and populate the
+			// // Ticket class.
+			// parser.parse(httpURLConnection.getInputStream());
+			// }
+
+			httpStatusCodeRange = HttpStatusCodeRangeUtil.getRange(httpURLConnection.getResponseCode());
+
+			switch (httpStatusCodeRange) {
+			case SUCCESS_RANGE:
+				System.out.println(
+						"SUCCESS: Successfully logged in. HTTP status code: " + httpURLConnection.getResponseCode());
+
+				/**
+				 * If user authorisation is successful, pass the received InputStream to the
+				 * Parser class
+				 */
+				parser.parse(httpURLConnection.getInputStream());
+				break;
+			case CLIENT_ERROR_RANGE:
+				// Inform user there is an error on their side
+				System.out.println("ERROR: Unable to login. HTTP status code: " + httpURLConnection.getResponseCode());
+
+				return false;
+			case SERVER_ERROR_RANGE:
+				// Inform user there is a server-side error, possibly attributed to the
+				// Zendesk API being unavailable
+				System.out.println("ERROR: API unavailable. HTTP status code: " + httpURLConnection.getResponseCode());
+
+				return false;
+			case UNKNOWN:
+				System.out.println(
+						"ERROR: Unknow error occurred. HTTP status code: " + httpURLConnection.getResponseCode());
+			default:
+				break;
+			}
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return true;
 	}
 }

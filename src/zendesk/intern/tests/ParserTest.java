@@ -3,6 +3,7 @@ package zendesk.intern.tests;
 import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -23,8 +24,14 @@ import zendesk.intern.utils.ParserImpl;
 public class ParserTest {
 	ParserImpl parser = new ParserImpl();
 
+	/**
+	 * Tests the parse() function of ParserImpl
+	 * 
+	 * @throws JSONException
+	 * @throws IOException 
+	 */
 	@Test
-	public void parserTest() throws JSONException {
+	public void parserSampleTicketTest() throws JSONException, IOException {
 		TicketImpl ticket = new TicketImpl();
 		ticket.setId(new Long(100));
 		ticket.setSubject("Test Ticket");

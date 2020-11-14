@@ -29,10 +29,11 @@ public class Menu {
 	 * its ID, or exit the application
 	 * 
 	 * @throws JSONException
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public void menu() throws JSONException, IOException {
 		ZendeskAPI zendeskAPI = ZendeskAPI.getInstance();
+//		ZendeskAPI zendeskAPI = new ZendeskAPI();
 		boolean keepAlive = true;
 		Long id;
 
@@ -54,28 +55,21 @@ public class Menu {
 			System.out.println("ERROR: User credentials not found. Please try again");
 		} else {
 			while (keepAlive) {
-				System.out.println("\n1. View all tickets");
-				System.out.println("2. Search ticket by ID");
-				System.out.println("3. Delete ticket by ID");
-				System.out.println("4. Exit application");
+				System.out.println("\nEnter 1 to view all tickets,");
+				System.out.println("2 to search for ticket by ID or,");
+				System.out.println("-1 to exit the application");
 
 				switch (scanner.nextInt()) {
 				case 1:
 					displayAllTickets(zendeskAPI.getParser().getTicketsHashMap(), scanner);
 					break;
 				case 2:
-					System.out.println("Enter ticket ID: ");
+					System.out.println("\nEnter ticket ID: ");
 					id = scanner.nextLong();
 
 					displayTicketById(zendeskAPI.getParser().getTicketsHashMap(), id);
 					break;
-//				case 3:
-//					System.out.println("Enter ticket ID: ");
-//					id = scanner.nextLong();
-//					
-//					apiRequester.deleteTicket(id);
-//					break;
-				case 4:
+				case -1:
 					System.out.println("\nExiting the application...");
 
 					scanner.close();
@@ -120,9 +114,22 @@ public class Menu {
 		}
 	}
 
+	/**
+	 * Display all tickets associated with logged in account
+	 * 
+	 * @param ticketMap
+	 * @param scanner
+	 */
 	public void displayAllTickets(HashMap<Long, TicketImpl> ticketMap, Scanner scanner) {
 		ticketsList = new ArrayList<>(ticketMap.values());
 
+		/**
+		 * If size of tickets list is less than 24, display the ticker header. Using a
+		 * foreach loop, iterate through the list and display each ticket. Else if
+		 * counter (initially set to 0) is less than the list size and input is set to
+		 * 1, first check if flag is true. If true, display ticker header and set flag
+		 * to false
+		 */
 		if (ticketsList.size() < 24) {
 			displayTicketHeader();
 
@@ -133,35 +140,31 @@ public class Menu {
 			while (counter < ticketsList.size() && input == 1) {
 				if (flag) {
 					displayTicketHeader();
+
 					flag = false;
 				}
 
+				
 				displayTicket(ticketsList.get(counter));
 				counter++;
 
+				// Checks if there is any tickets left to display
 				if (ticketsList.size() - counter == 0) {
 					System.out.println("\nEnd of tickets for this account");
 				}
 
+				/**
+				 * Checks if there is remaining tickets left to display. Prompt user to continue 
+				 * to the next page or exit
+				 */
 				if (counter > pageLimit) {
 					System.out.print("\nPress 1 to view next page, press 2 to exit: ");
 					input = scanner.nextInt();
+					
 					pageLimit = pageLimit + 25;
 					flag = true;
 				}
 			}
 		}
 	}
-
-	/**
-	 * Deletes a ticket using it's ID
-	 * 
-	 * @param ticketMap - HashMap containing all tickets
-	 * @param key - Ticket ID
-	 */
-//	public void deleteTicketByID(HashMap<Long, Ticket> ticketMap, Long key) {
-//		if (ticketMap.containsKey(key)) {
-//			ticketMap.remove(key);
-//		}
-//	}
 }
