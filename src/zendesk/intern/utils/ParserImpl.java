@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+//import java.util.logging.Logger;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,10 +26,13 @@ import zendesk.intern.interfaces.Parser;
  */
 public class ParserImpl implements Parser {
 	private TicketImpl ticket, ticketObj;
+	private ViaImpl viaImpl;
+	private SourceImpl sourceImpl;
 	private HashMap<Long, TicketImpl> ticketsHashMap = new HashMap<>();
 	private JSONArray arrayOfTickets;
 	private JSONObject mainObject, ticketJson;
 	private BufferedReader bufferedReader;
+//	private static Logger logger;
 	private StringBuilder stringBuilder = new StringBuilder();
 	private String line;
 	private int i;
@@ -48,9 +52,10 @@ public class ParserImpl implements Parser {
 			}
 
 			bufferedReader.close();
-			this.saveTicketsJsonString();
-		} catch (IOException e) {
-			e.printStackTrace();
+			this.saveTickets();
+		} catch (IOException ioException) {
+//			LOGGER.error(ioException.getMessage(), ioException);
+			ioException.printStackTrace();
 		}
 	}
 
@@ -58,7 +63,7 @@ public class ParserImpl implements Parser {
 	 * Saving the Array of Ticket JSON Objects as HashMap of Tickets object
 	 */
 	@Override
-	public void saveTicketsJsonString() throws JSONException {
+	public void saveTickets() throws JSONException {
 		mainObject = new JSONObject(stringBuilder.toString());
 		arrayOfTickets = mainObject.getJSONArray("tickets");
 
@@ -82,16 +87,16 @@ public class ParserImpl implements Parser {
 		ticketObj.setId(ticketJson.optLong("id"));
 		ticketObj.setExternal_id(ticketJson.optString("external_id"));
 
-		ViaImpl via = new ViaImpl();
+		viaImpl = new ViaImpl();
 		JSONObject viaJsonObject = ticketJson.getJSONObject("via");
-		via.setChannel(viaJsonObject.optString("channel"));
+		viaImpl.setChannel(viaJsonObject.optString("channel"));
 
-		SourceImpl source = new SourceImpl();
+		sourceImpl = new SourceImpl();
 		JSONObject sourceObject = viaJsonObject.getJSONObject("source");
-		source.setRel(sourceObject.optString("rel"));
-		via.setSource(source);
+		sourceImpl.setRel(sourceObject.optString("rel"));
+		viaImpl.setSource(sourceImpl);
 
-		ticketObj.setVia(via);
+		ticketObj.setVia(viaImpl);
 		ticketObj.setCreated_at(ticketJson.optString("created_at"));
 		ticketObj.setUpdated_at(ticketJson.optString("updated_at"));
 		ticketObj.setType(ticketJson.optString("type"));

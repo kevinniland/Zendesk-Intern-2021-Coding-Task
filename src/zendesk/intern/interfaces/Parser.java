@@ -19,7 +19,7 @@ import zendesk.intern.data.TicketImpl;
 public interface Parser {
 	public abstract void parse(InputStream inputStream) throws JSONException;
 
-	public abstract void saveTicketsJsonString() throws JSONException;
+	public abstract void saveTickets() throws JSONException;
 
 	public abstract TicketImpl convertToTicketObject(JSONObject ticketJson) throws JSONException;
 

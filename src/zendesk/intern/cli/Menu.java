@@ -122,7 +122,6 @@ public class Menu {
 	 */
 	public void displayAllTickets(HashMap<Long, TicketImpl> ticketMap, Scanner scanner) {
 		ticketsList = new ArrayList<>(ticketMap.values());
-
 		/**
 		 * If size of tickets list is less than 24, display the ticker header. Using a
 		 * foreach loop, iterate through the list and display each ticket. Else if
@@ -130,7 +129,7 @@ public class Menu {
 		 * 1, first check if flag is true. If true, display ticker header and set flag
 		 * to false
 		 */
-		if (ticketsList.size() < 24) {
+		if (ticketsList.size() < 25) {
 			displayTicketHeader();
 
 			for (TicketImpl ticket : ticketsList) {
@@ -140,11 +139,9 @@ public class Menu {
 			while (counter < ticketsList.size() && input == 1) {
 				if (flag) {
 					displayTicketHeader();
-
 					flag = false;
 				}
 
-				
 				displayTicket(ticketsList.get(counter));
 				counter++;
 
@@ -152,7 +149,6 @@ public class Menu {
 				if (ticketsList.size() - counter == 0) {
 					System.out.println("\nEnd of tickets for this account");
 				}
-
 				/**
 				 * Checks if there is remaining tickets left to display. Prompt user to continue 
 				 * to the next page or exit
@@ -160,7 +156,6 @@ public class Menu {
 				if (counter > pageLimit) {
 					System.out.print("\nPress 1 to view next page, press 2 to exit: ");
 					input = scanner.nextInt();
-					
 					pageLimit = pageLimit + 25;
 					flag = true;
 				}

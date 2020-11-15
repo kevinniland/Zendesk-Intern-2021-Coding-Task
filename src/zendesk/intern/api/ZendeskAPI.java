@@ -216,18 +216,6 @@ public class ZendeskAPI {
 			encodedCredentials = new String(Base64.getEncoder().encodeToString(credentials.getBytes()));
 			httpURLConnection.setRequestProperty("Authorization", "Basic " + encodedCredentials);
 
-			// if (httpURLConnection.getResponseCode() != 200) {
-			// System.out.println(
-			// "Unable to connect to the subdomain HTTP Error Code : " +
-			// httpURLConnection.getResponseCode());
-			// return false;
-			// } else {
-			//
-			// // Sending the received InputStream to TicketParser to parse and populate the
-			// // Ticket class.
-			// parser.parse(httpURLConnection.getInputStream());
-			// }
-
 			httpStatusCodeRange = HttpStatusCodeRangeUtil.getRange(httpURLConnection.getResponseCode());
 
 			switch (httpStatusCodeRange) {
@@ -258,11 +246,12 @@ public class ZendeskAPI {
 			default:
 				break;
 			}
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (MalformedURLException malformedURLException) {
+			malformedURLException.printStackTrace();
+		} catch (IOException ioException) {
+			ioException.printStackTrace();
 		}
+		
 		return true;
 	}
 }
