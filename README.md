@@ -47,7 +47,7 @@ This section details how to download, compile, and run the code contained in thi
 * Once successfully logged in, the user will be presented with a menu. They have the option of viewing all tickets and viewing a ticket by specifying its ID.
    1. To view all tickets, choose option 1. This will display a max of 25 tickets. The user can then 'page' through the remaining tickets or exit to the main menu.
    2. To view a single ticket, choose option 2. The user will be prompted for a ticket ID. If a ticket with this ID exists, the ticker will be displayed.
-   3. To exit the application, choose option -1.
+   3. To exit the application, enter option -1.
 
 ---
 
