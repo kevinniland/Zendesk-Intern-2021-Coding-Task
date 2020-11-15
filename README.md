@@ -26,7 +26,7 @@ This repository contains the following directories and files:
 * [src/zendesk/intern](https://github.com/kevinniland/Zendesk-Intern-2021-Coding-Task/tree/main/src/zendesk/intern) - Contains the source code for the application.
 * [images](https://github.com/kevinniland/Zendesk-Intern-2021-Coding-Task/tree/main/images) - Contains images used to help aid in the explanation of certain parts of the application and the accompanying code.
 <br>
-___A short screencast of the application being demoed is available here: https://www.youtube.com/watch?v=NNoSHjKzleM___
+* A short screencast of the application being demoed is available here: https://www.youtube.com/watch?v=NNoSHjKzleM
 <br>
 
 ### Requirements
