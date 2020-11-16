@@ -19,7 +19,7 @@ import zendesk.intern.utils.ParserImpl;
  * @category Testing
  * @version 1.0
  * 
- *          ParserTest.java -
+ *          ParserTest.java - Test class for ParserImpl
  */
 public class ParserTest {
 	ParserImpl parser = new ParserImpl();

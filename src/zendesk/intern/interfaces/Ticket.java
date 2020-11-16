@@ -4,6 +4,13 @@ import java.util.ArrayList;
 
 import zendesk.intern.data.ViaImpl;
 
+/**
+ * @author Kevin Niland
+ * @category Interface
+ * @version 1.0
+ *
+ *          Ticket.java - Interface for TicketImpl
+ */
 public interface Ticket {
 	public abstract String getUrl();
 

@@ -17,7 +17,8 @@ import zendesk.intern.utils.ParserImpl;
  * @category API
  * @version 1.0
  * 
- *          ZendeskAPI.java -
+ *          ZendeskAPI.java - Used to connect to the Zendesk API and retrieve
+ *          tickets associated with an account
  * 
  *          The singleton design pattern is used to implement this class
  */
@@ -251,7 +252,7 @@ public class ZendeskAPI {
 		} catch (IOException ioException) {
 			ioException.printStackTrace();
 		}
-		
+
 		return true;
 	}
 }

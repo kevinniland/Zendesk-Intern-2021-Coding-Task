@@ -85,6 +85,9 @@ public class Menu {
 		}
 	}
 
+	/**
+	 * Displays the ticket header
+	 */
 	public void displayTicketHeader() {
 		System.out.format("\n%-4s| %-50s | %-4s | %-12s | %-10s | %-10s | %-30s", "ID", "Subject", "Status", "Group ID",
 				"Priority", "Type", "Tags");
@@ -92,6 +95,11 @@ public class Menu {
 				"\n-------------------------------------------------------------------------------------------------------------------------------------");
 	}
 
+	/**
+	 * Displays and formats tickets
+	 * 
+	 * @param ticket
+	 */
 	public void displayTicket(TicketImpl ticket) {
 		long id = ticket.getId();
 		String subject = ticket.getSubject();
@@ -104,7 +112,7 @@ public class Menu {
 				type, tags);
 	}
 
-	// Display ticket with the user input field ID as a key.
+	// Display ticket with the user input field ID as a key
 	public void displayTicketById(HashMap<Long, TicketImpl> ticketMap, Long key) {
 		if (ticketMap.containsKey(key)) {
 			displayTicketHeader();

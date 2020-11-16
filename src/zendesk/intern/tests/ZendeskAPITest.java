@@ -12,7 +12,7 @@ import zendesk.intern.api.ZendeskAPI;
  * @category Testing
  * @version 1.0
  *
- *          ZendeskAPITest -
+ *          ZendeskAPITest - Test class for ZendeskAPI
  */
 public class ZendeskAPITest {
 	/**
@@ -25,7 +25,7 @@ public class ZendeskAPITest {
 	@Test
 	public void validLoginTest() throws JSONException {
 		ZendeskAPI zendeskAPI = ZendeskAPI.getInstance();
-//		ZendeskAPI zendeskAPI = new ZendeskAPI();
+		// ZendeskAPI zendeskAPI = new ZendeskAPI();
 
 		zendeskAPI.setSubdomain("kevinniland");
 		zendeskAPI.setUsername("kevinniland97@gmail.com");
@@ -44,7 +44,7 @@ public class ZendeskAPITest {
 	@Test
 	public void invalidLoginTest() throws JSONException {
 		ZendeskAPI zendeskAPI = ZendeskAPI.getInstance();
-//		ZendeskAPI zendeskAPI = new ZendeskAPI();
+		// ZendeskAPI zendeskAPI = new ZendeskAPI();
 
 		zendeskAPI.setSubdomain("subdomain");
 		zendeskAPI.setUsername("email");
